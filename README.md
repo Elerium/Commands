@@ -1,4 +1,4 @@
-# Elerium\Commands #
+# Elerium\Commands [![Build Status](https://travis-ci.org/Elerium/Commands.png)](https://travis-ci.org//Elerium/Commands) #
 Command line arguments parsing tool for JavaScript.
 
 ## Usage ##
