@@ -1,0 +1,16 @@
+{
+	"name": "commands",
+	"description": "Command line parsing tool for JavaScript",
+	"version": "1.0.0",
+	"scripts": {
+		"test": "mocha test"
+	},
+	"dependencies": {
+		"LiveScript": "*",
+		"prelude-ls": "*"
+	},
+	"devDependencies": {
+		"mocha": "*",
+		"should": "*"
+	}
+}
