@@ -49,3 +49,19 @@ expand-shortcut = (rules, shortcut) ->
 	| shortcut == undefined => undefined
 	| otherwise => rules |> _.Obj.obj-to-pairs |> (_.find ([parameter, rule]) ->
 		rule.shortcut == shortcut) |> _.head
+
+export help = (rules) ->
+	max = 0
+	texts = rules |> _.Obj.obj-to-pairs |> _.map ([parameter, rule]) ->
+		parameters = '--' + parameter + (if rule.shortcut then ', -' + rule.shortcut else '')
+		max := Math.max max, parameters.length
+		[parameters, rule.description]
+
+	texts |> _.foldl (acc, [parameters, description]) ->
+		if description == undefined
+			text = parameters
+		else
+			text = parameters + (_.Str.repeat (max - parameters.length + 1), ' ') + description
+
+		acc + (if acc != '' then "\n" else '') + text
+	, ''

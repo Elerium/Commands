@@ -3,16 +3,19 @@ require! '../lib/commands'
 
 _it = it # Because LiveScript using 'it' as function parameter
 
-describe '#parse-arguments', ->
-	rules =
-		directory:
-			shortcut: 'd',
-			default: './vendor'
-		port:
-			shortcut: 'p'
-		'-weird':
-			shortcut: '-w'
+rules =
+	directory:
+		shortcut: 'd',
+		default: './vendor',
+		description: 'Directory'
+	port:
+		shortcut: 'p'
+	'-weird':
+		shortcut: '-w',
+		description: 'I don\'t really know...'
+	empty: {}
 
+describe '#parse', ->
 	parser = commands.parse rules
 
 	_it 'should parse parameter', ->
@@ -58,3 +61,7 @@ describe '#parse-arguments', ->
 	_it 'should throw error on undefined parameter', ->
 		assert.throws ->
 			parser ['value']
+
+describe '#help', ->
+	_it 'should generate help', ->
+		assert.equal "--directory, -d Directory\n--port, -p\n---weird, --w   I don't really know...\n--empty", commands.help rules
