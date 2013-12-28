@@ -1,5 +1,5 @@
 {
-  "name": "commands",
+  "name": "elerium-commands",
   "description": "Command line parsing tool for Node.js",
   "version": "1.1.0",
   "scripts": {
