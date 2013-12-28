@@ -6,14 +6,14 @@
     "test": "mocha test"
   },
   "dependencies": {
-    "LiveScript": "*",
     "prelude-ls": "*"
   },
   "devDependencies": {
+    "LiveScript": "*",
     "mocha": "*",
     "should": "*"
   },
-  "main": "index.js",
+  "main": "./lib/commands.js",
   "directories": {
     "test": "test"
   },
