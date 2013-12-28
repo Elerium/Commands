@@ -1,16 +1,35 @@
 {
-	"name": "commands",
-	"description": "Command line parsing tool for Node.js",
-	"version": "1.1.0",
-	"scripts": {
-		"test": "mocha test"
-	},
-	"dependencies": {
-		"LiveScript": "*",
-		"prelude-ls": "*"
-	},
-	"devDependencies": {
-		"mocha": "*",
-		"should": "*"
-	}
+  "name": "commands",
+  "description": "Command line parsing tool for Node.js",
+  "version": "1.1.0",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "dependencies": {
+    "LiveScript": "*",
+    "prelude-ls": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Elerium/Commands"
+  },
+  "keywords": [
+    "console",
+	"configuration",
+	"arguments"
+  ],
+  "author": "Elerium <elerium.git@gmail.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Elerium/Commands/issues"
+  },
+  "homepage": "https://github.com/Elerium/Commands"
 }
