@@ -48,12 +48,14 @@ describe '#parse', ->
 		assert.deepEqual port: '', empty: void, parser2 ['--port', '']
 		assert.deepEqual port: 8080, empty: void, parser2 ['--port', '--empty']
 		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '--port']
+		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '--port', void]
 
 	_it 'should parse shortcuted parameter without argument with default value', ->
 		assert.deepEqual port: 8080, empty: void, parser2 ['-p']
 		assert.deepEqual port: '', empty: void, parser2 ['-p', '']
 		assert.deepEqual port: 8080, empty: void, parser2 ['-p', '--empty']
 		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '-p']
+		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '-p', void]
 
 	_it 'should throw error on bad parameter prefix', ->
 		assert.throws ->
