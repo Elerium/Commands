@@ -8,10 +8,12 @@ Here is an example usage:
 var commands = require('commands');
 
 var configuration = commands.parse({
-	parameter: {
+	parameter: {},
+	short: {
 		shortcut: 's'
-	}
-}, ['--parameter', 'foo', '-s', 'bar']);
+	},
+	switch: {}
+}, ['--parameter', 'foo', '-s', 'bar', --switch]); // {parameter: foo, short: bar, switch: true}
 ```
 
 ## Rules ##
