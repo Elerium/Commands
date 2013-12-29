@@ -33,19 +33,20 @@ describe '#parse', ->
 		assert.deepEqual directory: void, '-weird': void, parser1 ['--directory']
 		assert.deepEqual directory: '', '-weird': void, parser1 ['--directory', '']
 		assert.deepEqual directory: void, '-weird': void, parser1 ['--directory', void]
-		assert.deepEqual directory: void, '-weird': void, parser1 ['--directory', null]
+		assert.deepEqual directory: null, '-weird': void, parser1 ['--directory', null]
 		assert.deepEqual directory: void, '-weird': void, parser1 ['--directory', '---weird']
 
 	_it 'should parse shortcuted parameter with empty argument', ->
 		assert.deepEqual directory: void, '-weird': void, parser1 ['-d']
 		assert.deepEqual directory: '', '-weird': void, parser1 ['-d', '']
 		assert.deepEqual directory: void, '-weird': void, parser1 ['-d', void]
-		assert.deepEqual directory: void, '-weird': void, parser1 ['-d', null]
+		assert.deepEqual directory: null, '-weird': void, parser1 ['-d', null]
 		assert.deepEqual directory: void, '-weird': void, parser1 ['-d', '--w']
 
 	_it 'should parse parameter without argument with default value', ->
 		assert.deepEqual port: 8080, empty: void, parser2 ['--port']
 		assert.deepEqual port: '', empty: void, parser2 ['--port', '']
+		assert.deepEqual port: null, empty: void, parser2 ['--port', null]
 		assert.deepEqual port: 8080, empty: void, parser2 ['--port', '--empty']
 		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '--port']
 		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '--port', void]
@@ -53,6 +54,7 @@ describe '#parse', ->
 	_it 'should parse shortcuted parameter without argument with default value', ->
 		assert.deepEqual port: 8080, empty: void, parser2 ['-p']
 		assert.deepEqual port: '', empty: void, parser2 ['-p', '']
+		assert.deepEqual port: null, empty: void, parser2 ['-p', null]
 		assert.deepEqual port: 8080, empty: void, parser2 ['-p', '--empty']
 		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '-p']
 		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '-p', void]
