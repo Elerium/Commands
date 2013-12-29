@@ -38,3 +38,26 @@ var rules = {
 
 commands.parse(rules, ['-f', 'bar']); // {foo: 'bar'}
 ```
+
+## Help generating ##
+You can also generate help message:
+```
+var rules = {
+	foo: {
+		shortcut: 'f',
+		description: 'I\'m foo!'
+	},
+	foobar: {
+		shortcut: 'b',
+		description: 'I\'m foobar!'
+	}
+}
+
+commands.help(rules);
+```
+
+Result will be:
+```
+--foo, -f    I'm foo!
+--foobar, -b I'm foobar!
+```
