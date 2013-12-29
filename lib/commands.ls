@@ -8,6 +8,10 @@ get-shortcuts = (rules) ->
 		rule.shortcut != undefined) |> (_.Obj.map (rule) ->
 			rule.shortcut) |> _.Obj.values
 
+get-defaults = (rules) ->
+	rules |> (_.Obj.map (rule) ->
+			rule.default)
+
 is-parameter = (rules, parameter) -->
 	parameter in get-parameters rules
 
@@ -18,17 +22,18 @@ export parse = (rules, argv) -->
 	parse-arguments rules, (is-parameter rules), (is-shortcut rules), argv
 
 parse-arguments = (rules, is-parameter, is-shortcut, [parameter, argument, ...rest]) -->
-	| parameter == undefined => {}
+	| parameter == undefined => get-defaults rules
 	| otherwise =>
 		parsed-parameter = (parse-parameter is-parameter, parameter) || (expand-shortcut rules, parse-shortcut is-shortcut, parameter) || throw new Error 'Parameter \'' + parameter + '\' does not exist.'
 		parser = parse-arguments rules, is-parameter, is-shortcut
 
 		if (parse-parameter is-parameter, argument) || (parse-shortcut is-shortcut, argument)
 			parsed-arguments = parser [argument] ++ rest
-			parsed-arguments[parsed-parameter] = rules[parsed-parameter].default || undefined
 		else
 			parsed-arguments = parser rest
-			parsed-arguments[parsed-parameter] = argument || rules[parsed-parameter].default
+
+			if argument != undefined
+				parsed-arguments[parsed-parameter] = argument
 
 		parsed-arguments
 
