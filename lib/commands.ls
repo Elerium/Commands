@@ -29,11 +29,10 @@ parse-arguments = (rules, is-parameter, is-shortcut, [parameter, argument, ...re
 
 		if (parse-parameter is-parameter, argument) || (parse-shortcut is-shortcut, argument)
 			parsed-arguments = parser [argument] ++ rest
+			parsed-arguments[parsed-parameter] = parsed-arguments[parsed-parameter] || true
 		else
 			parsed-arguments = parser rest
-
-			if argument != undefined
-				parsed-arguments[parsed-parameter] = argument
+			parsed-arguments[parsed-parameter] = if argument == undefined then (parsed-arguments[parsed-parameter] || true) else argument
 
 		parsed-arguments
 

@@ -29,35 +29,39 @@ describe '#parse', ->
 		assert.deepEqual directory: './lib', '-weird': void, parser1 ['-d', './lib']
 		assert.deepEqual directory: void, '-weird': 'yes', parser1 ['--w', 'yes']
 
-	_it 'should parse parameter with empty argument', ->
-		assert.deepEqual directory: void, '-weird': void, parser1 ['--directory']
+	_it 'should parse parameter with empty or null argument', ->
 		assert.deepEqual directory: '', '-weird': void, parser1 ['--directory', '']
-		assert.deepEqual directory: void, '-weird': void, parser1 ['--directory', void]
 		assert.deepEqual directory: null, '-weird': void, parser1 ['--directory', null]
-		assert.deepEqual directory: void, '-weird': void, parser1 ['--directory', '---weird']
+		assert.deepEqual port: '', empty: void, parser2 ['--port', '']
+		assert.deepEqual port: null, empty: void, parser2 ['--port', null]
 
-	_it 'should parse shortcuted parameter with empty argument', ->
-		assert.deepEqual directory: void, '-weird': void, parser1 ['-d']
+	_it 'should parse shortcuted parameter with empty or null argument', ->
 		assert.deepEqual directory: '', '-weird': void, parser1 ['-d', '']
-		assert.deepEqual directory: void, '-weird': void, parser1 ['-d', void]
 		assert.deepEqual directory: null, '-weird': void, parser1 ['-d', null]
-		assert.deepEqual directory: void, '-weird': void, parser1 ['-d', '--w']
+		assert.deepEqual port: '', empty: void, parser2 ['-p', '']
+		assert.deepEqual port: null, empty: void, parser2 ['-p', null]
+
+	_it 'should parse switch parameter', ->
+		assert.deepEqual directory: true, '-weird': void, parser1 ['--directory']
+		assert.deepEqual directory: true, '-weird': true, parser1 ['--directory', '--w']
+		assert.deepEqual directory: true, '-weird': true, parser1 ['--directory', undefined, '--w', undefined]
+
+	_it 'should parse shortcuted switch parameter', ->
+		assert.deepEqual directory: true, '-weird': void, parser1 ['-d']
+		assert.deepEqual directory: true, '-weird': true, parser1 ['-d', '--w']
+		assert.deepEqual directory: true, '-weird': true, parser1 ['-d', undefined, '--w', undefined]
 
 	_it 'should parse parameter without argument with default value', ->
 		assert.deepEqual port: 8080, empty: void, parser2 ['--port']
-		assert.deepEqual port: '', empty: void, parser2 ['--port', '']
-		assert.deepEqual port: null, empty: void, parser2 ['--port', null]
-		assert.deepEqual port: 8080, empty: void, parser2 ['--port', '--empty']
-		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '--port']
-		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '--port', void]
+		assert.deepEqual port: 8080, empty: true, parser2 ['--port', '--empty']
+		assert.deepEqual port: 8080, empty: true, parser2 ['--empty', '--port']
+		assert.deepEqual port: 8080, empty: true, parser2 ['--empty', '--port', void]
 
 	_it 'should parse shortcuted parameter without argument with default value', ->
 		assert.deepEqual port: 8080, empty: void, parser2 ['-p']
-		assert.deepEqual port: '', empty: void, parser2 ['-p', '']
-		assert.deepEqual port: null, empty: void, parser2 ['-p', null]
-		assert.deepEqual port: 8080, empty: void, parser2 ['-p', '--empty']
-		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '-p']
-		assert.deepEqual port: 8080, empty: void, parser2 ['--empty', '-p', void]
+		assert.deepEqual port: 8080, empty: true, parser2 ['-p', '--empty']
+		assert.deepEqual port: 8080, empty: true, parser2 ['--empty', '-p']
+		assert.deepEqual port: 8080, empty: true, parser2 ['--empty', '-p', void]
 
 	_it 'should throw error on bad parameter prefix', ->
 		assert.throws ->
