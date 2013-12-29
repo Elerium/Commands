@@ -9,9 +9,9 @@ var commands = require('commands');
 
 var configuration = commands.parse({
 	parameter: {
-		shortcut: 'short'
+		shortcut: 's'
 	}
-}, ['--parameter', 'foo', '-short', 'bar']);
+}, ['--parameter', 'foo', '-s', 'bar']);
 ```
 
 ## Rules ##
