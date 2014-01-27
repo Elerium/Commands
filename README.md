@@ -13,7 +13,7 @@ var configuration = commands.parse({
 		shortcut: 's'
 	},
 	switch: {}
-}, ['--parameter', 'foo', '-s', 'bar', --switch]); // {parameter: foo, short: bar, switch: true}
+}, ['--parameter', 'foo', '-s', 'bar', '--switch']); // {parameter: foo, short: bar, switch: true}
 ```
 
 ## Rules ##
